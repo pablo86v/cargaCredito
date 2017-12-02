@@ -15,15 +15,15 @@
 
 <ion-content padding style="background-color:bisque">
   <div style="text-align:center">
-    <br>    
-    <br>
-    <br> 
-    <button style="background-color: transparent;"> <img src="./assets/icon/consultaSaldo.jpg" style="width: 150px; height: 80px" (click)="VisualizarSaldo()" /></button>   
-    <br>
-    <br>
-    <button style="background-color: transparent;"> <img src="./assets/icon/recargar.png" style="width: 100px; height: 80px" (click)="CargarCredito()" /></button>
+    <button style="background-color: transparent;" class="mt-5"> 
+      <img src="./assets/icon/consultaSaldo.jpg" style="width: 150px; height: 150px" (click)="VisualizarSaldo()" />
+    </button>   
+    
+    <button style="background-color: transparent;" class="mt-5"> 
+      <img src="./assets/icon/recargar.png" style="width: 150px; height: 150px" (click)="CargarCredito()" />
+    </button>
   </div>
   <br>
   <br>
-  <button ion-button block class="btn mt-3" color="danger" (click)="Desloguear()">Salir</button>
+  <button round ion-button block class="btn-custom mt-3 text-capitalize"  (click)="Desloguear()">Salir</button>
 </ion-content>

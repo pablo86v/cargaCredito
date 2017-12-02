@@ -1,23 +1,23 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Login
+      Inicio de sesión
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding style="background-color:bisque">
+<ion-content padding >
   <!-- <ion-view view-title="Login" name="login-view"> -->
-        <div class="list list-inset" style="background-color:bisque">
-          <ion-item>
+        <div class="list list-inset">
+          <ion-item class="mt-3">
             <ion-label>Usuario</ion-label>
             <ion-input disabled [(ngModel)]="usuario" id="usuario" name="usuario"></ion-input>
           </ion-item>
-          <ion-item>
+          <ion-item class="mt-3">
             <ion-label class="item item-input">Clave</ion-label>
             <ion-input disabled [(ngModel)]="password" id="password" name="password" type="password"></ion-input>
           </ion-item>
-        <ion-item>
+        <ion-item class="mt-3">
           <ion-label class = "item item-input item-select item-positive">Tipo</ion-label>   
             <ion-select [(ngModel)]="tipo" id="tipo" name="tipo" (ngModelChange)="HardcodearUsuario()">
                 <ion-option selected>Seleccione Usuario</ion-option>
@@ -28,8 +28,7 @@
                 <ion-option>J2</ion-option>
             </ion-select>
           </ion-item>
-        <button ion-button block color="danger" 
-        (click)="Login(usuario, password, tipo)">Ingresar </button>
+        <button class="mt-3 btn-custom text-capitalize" round ion-button block (click)="Login(usuario, password, tipo)">Ingresar </button>
         <!-- <button class="button button-block button-calm" (click)="Login(usuario, password, tipo)">Login</button> -->
     </div>
  <!-- </ion-view>  -->

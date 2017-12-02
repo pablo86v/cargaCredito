@@ -86,3 +86,23 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
+.toolbar-background-md{
+  background:    #007F26   !important;
+}
+
+.toolbar-title-md {
+  color : white !important;
+
+}
+
+ion-content{
+  background-color: #00BF39 !important;
+}
+
+
+ *{font-family: 'Lobster', cursive !important;}
+
+
+
+
