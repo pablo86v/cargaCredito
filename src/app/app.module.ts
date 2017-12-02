@@ -1,52 +1,67 @@
+import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-import { HttpModule }    from '@angular/http';
+import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { StatusBar } from '@ionic-native/status-bar';
 
-
-//Páginas
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+// import { AboutPage } from '../pages/about/about';
+// import { ContactPage } from '../pages/contact/contact';
+// import { HomePage } from '../pages/home/home';
+// import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 
-//Servicios
-import { AuthServiceProvider } from '../providers/auth-service/auth-service';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-import { environment } from '../environments/environment';
+//import { Observable } from 'rxjs/Observable';
+import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { CargaCreditoProvider } from '../providers/carga-credito/carga-credito';
+import { CargaCreditoPage } from '../pages/carga-credito/carga-credito';
+import { MenuPage } from '../pages/menu/menu';
+import { SaldoPage } from '../pages/saldo/saldo';
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { CONFIG } from './firebase';
+
+//import { Http } from '@angular/http';
+import { HttpModule } from '@angular/http';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
+    // AboutPage,
+    // ContactPage,
+    // HomePage,
+    // TabsPage,
     LoginPage,
-    ListPage
+    CargaCreditoPage,
+    MenuPage,
+    SaldoPage
   ],
   imports: [
-    HttpModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule,
-    AngularFireDatabaseModule
+    AngularFireModule.initializeApp(CONFIG),
+    AngularFireDatabaseModule,
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
+    // AboutPage,
+    // ContactPage,
+    // HomePage,
+    // TabsPage,
     LoginPage,
-    ListPage
+    CargaCreditoPage,
+    MenuPage,
+    SaldoPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    AuthServiceProvider,
+    BarcodeScanner,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthServiceProvider
+    CargaCreditoProvider
   ]
 })
 export class AppModule {}

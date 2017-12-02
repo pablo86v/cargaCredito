@@ -1,20 +1,15 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-import {AuthServiceProvider} from '../../providers/auth-service/auth-service';
-import { App, ViewController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
-
-import {HomePage} from '../../pages/home/home';
-import { Usuario} from '../../entidades/usuario';
-
-
+//import { TabsPage } from '../tabs/tabs';
+// import { CargaCreditoPage } from '../carga-credito/carga-credito';
+import { MenuPage } from '../menu/menu';
 
 /**
  * Generated class for the LoginPage page.
  *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
  */
 
 @IonicPage()
@@ -23,76 +18,59 @@ import { Usuario} from '../../entidades/usuario';
   templateUrl: 'login.html',
 })
 export class LoginPage {
+  private usuario;
+  private password;
+  private tipo;
 
-items: any[];
-contrasenia : string;
-objUsuario: Usuario;
-
-
-constructor(public navCtrl: NavController, public appCtrl: App, public viewCtrl: ViewController, 
-  public navParams: NavParams , public auservice : AuthServiceProvider,public toastCtrl: ToastController) {
-  this.cargarDatos();
-  this.objUsuario = new Usuario();
-  this.contrasenia = "";
-}
-
-presentToast(textToShow) {
-  const toast = this.toastCtrl.create({
-    message: textToShow,
-    duration: 2000,
-    position: 'middle'
-  });
-
-  toast.onDidDismiss(() => {
-    console.log('Dismissed toast');
-  });
-
-  toast.present();
-}
-
-
-selectUser(valor)
-{
-  
-for (let user of this.items) {
-  if(user.nombre == valor){
-     this.objUsuario = user;
-     this.contrasenia = user.clave;
+  constructor(public navCtrl: NavController, public navParams: NavParams, private toastCtrl: ToastController) {
   }
-}
-console.info(this.objUsuario);
-
-}//selectUser
-
-cargarDatos()
-  {
-   this.auservice.getItems().subscribe(
-     datos => console.info(this.items=datos),
-     error => console.error(error),
-     () =>  console.log("ok")
-   );
-  }    
-
- pushPage() {
-  this.navCtrl.push(HomePage);
-  } 
-
-
-validateUser(){
-
- if (this.contrasenia != this.objUsuario.clave || this.contrasenia == ""){
-   this.presentToast("Contraseña inválida");
- }
-   else{
-   this.pushPage();
- }
-}
-
 
   ionViewDidLoad() {
-  console.log('ionViewDidLoad LoginPage');
+    //console.log('ionViewDidLoad LoginPage');
   }
 
+  Login(usuario: string, pass: string, tipo: string) {
+    //console.log(this.usuario);
 
-}//classs
+    if ((this.usuario == "") || (this.usuario == undefined) || (this.usuario == null) ||
+      (this.usuario == "") || (this.usuario == undefined) || (this.usuario == null)) {
+      this.presentToast("Debe ingresar usuario y contraseña"); 
+    } else {
+      localStorage.setItem("usuario", usuario);
+      localStorage.setItem("password", pass);
+      localStorage.setItem("tipoUsuario", tipo);
 
+      this.navCtrl.push(MenuPage);
+    }
+
+  }
+
+  HardcodearUsuario() {
+    console.log("entró");
+    console.log(this.tipo);
+    if (this.tipo == 'Invitado') {
+      this.usuario = 'Invitado';
+      this.password = '22';
+    } else if (this.tipo == 'Admin') {
+      this.usuario = 'Admin';
+      this.password = '11';
+    } else if (this.tipo == 'Usuario') {
+      this.usuario = 'Usuario';
+      this.password = '33';
+    } else if (this.tipo == 'J1') {
+      this.usuario = 'J1';
+      this.password = '44';
+    } else if (this.tipo == 'J2') {
+      this.usuario = 'J2';
+      this.password = '55';
+    }
+  }
+
+  private presentToast(mensaje) {
+    let toast = this.toastCtrl.create({
+      message: mensaje,
+      duration: 3000
+    });
+    toast.present();
+  }
+}
